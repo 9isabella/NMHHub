@@ -389,6 +389,7 @@ $(document).ready(function() {
     $("#results").children().remove(); //reset the element
     var findText = $(this).val(); //gets text from input
 
+    //only searches through relevent links (aka students or employees)
     if(stu){
       $.each(students, function(i, link){
         //if the current link's text includes the find text, add it to the array
