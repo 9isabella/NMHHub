@@ -102,3 +102,12 @@ header {
     margin-left: 0;
   }
 }
+
+.bg-custom{
+  background-color: #111 !important;
+  color: white;
+}
+
+.pos-f-t .btn-group-vertical{
+  border: none;
+}
