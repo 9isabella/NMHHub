@@ -36,7 +36,7 @@
 .btn-group-vertical button {
   height: 80px;
   font-size: 130%;
-  background-color: black;
+  background-color: #111;
   border: none;
   border-radius: 0;
 }

@@ -435,8 +435,14 @@ $(document).ready(function() {
   });
 
   //makes catagory buttons clickable
-  $("button").on("click", function(){
+  $(".btn-secondary").on("click", function(){
+
+    //style selected catagory button
+    $(".btn-secondary").css('background-color','#111');
+    $(this).css('background-color','#206BCC');
+
     var currentId = this.id;
+    var matching = [];
     current = [];
     $("#results").children().remove(); //reset the element
     $.each(links, function(i, link) {
@@ -444,8 +450,25 @@ $(document).ready(function() {
         current.push(link);
       }
     });
+    if(stu){
+      $.each(current, function(i, link){
+        if(link.audience === "students" || link.audience === "both"){
+          matching.push(link);
+        }
+      });
+    }else if(emp){
+      $.each(current, function(i, link){
+        if(link.audience === "adults" || link.audience === "both"){
+          matching.push(link);
+        }
+      });
+    }else if(all){
+      $.each(current, function(i, link){
+          matching.push(link);
+      });
+    }
     //after all the matching elements are found, add them to the results div
-    $.each(current, function(i, link) {
+    $.each(matching, function(i, link) {
       $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
     });
   });
@@ -456,6 +479,7 @@ $(document).ready(function() {
     $(".btn-dark").css('background-color','#343a40');
     $(this).css('background-color','#206BCC');
     btnId = this.id;
+    $("#results").children().remove(); //reset the element
 
     //set each variable to appropraite boolean value
     if(btnId === "students"){
