@@ -462,7 +462,7 @@ $(document).ready(function() {
 
     //style selected catagory button
     $(".btn-secondary").css('background-color','#111');
-    $(this).css('background-color','#206BCC');
+    $(this).css('background-color','#519dd0');
 
     var currentId = this.id;
     var matching = [];
@@ -497,10 +497,10 @@ $(document).ready(function() {
   });
 
   //student, all, employee buttons
-  $(".btn-dark").on("click", function(){
+  $(".btn-custom").on("click", function(){
     //change styling of correct button
-    $(".btn-dark").css('background-color','#343a40');
-    $(this).css('background-color','#206BCC');
+    $(".btn-custom").css('background-color','#111');
+    $(this).css('background-color','#519dd0');
     btnId = this.id;
     $("#results").children().remove(); //reset the element
 
