@@ -127,7 +127,9 @@ li a{
   color: white !important;
 }
 
-
+li a:hover{
+  text-decoration: none !important;
+}
 
 @media screen and (min-width: 1000px) {
 #results {
@@ -141,12 +143,6 @@ li a{
     display: inline-block;
     text-align: center;
 }
-
-#results li:hover{
-  margin-left: 20px;
-  background-color: #8E2F44;
-}
-
 }
 
 @media screen and (min-width: 1340px) {
@@ -162,16 +158,12 @@ li a{
     display: inline-block;
     text-align: center;
 }
-
-#results li:hover{
-  margin-left: 20px;
-  background-color: #8E2F44;
-}
-
 }
 
 #results{
-  margin-top: 20px;
+  padding: 10px;
+  background-color: #005b94;
+  margin: 40px;
 }
 #results li:hover{
   background-color: #8E2F44;

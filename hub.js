@@ -367,6 +367,8 @@ $(document).ready(function() {
   var emp = false;
   var all = true;
 
+  $("#results").css('background-color','#111');
+
   //populate both students and employees arrays with correct links
   $.each(links, function(i, link){
     if(link.audience === "students" || link.audience === "both"){
@@ -435,12 +437,14 @@ $(document).ready(function() {
   }
 }
 
-if(results.length < 20){
-
+if(results.length < 20 && results.length > 0){
+  $("#results").css('background-color','#005b94');
   //after all the matching elements are found, add them to the results div
   $.each(results, function(i, link) {
     $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
   });
+}else{
+  $("#results").css('background-color','#111');
 }
   });
 
@@ -493,12 +497,14 @@ if(results.length < 20){
           matching.push(link);
       });
     }
-    if(matching.length < 20){
-
+    if(matching.length < 20 && matching.length > 0){
+      $("#results").css('background-color','#005b94');
       //after all the matching elements are found, add them to the results div
       $.each(matching, function(i, link) {
         $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
       });
+    }else{
+      $("#results").css('background-color','#111');
     }
   });
 
@@ -581,14 +587,14 @@ if(results.length < 20){
       }
     }
       //after all relevent links  are found, add them to the results div
-      if(relevent.length < 20){
-
+      if(relevent.length < 20 && relevent.length > 0){
+        $("#results").css('background-color','#005b94');
         $.each(relevent, function(i, link) {
           $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
         });
+      }else{
+        $("#results").css('background-color','#111');
       }
-
-
 
   });
 
