@@ -496,10 +496,37 @@ $(document).ready(function() {
       emp = false;
     }
 
-      //if something has been search, find the relevent links and only show those
-      var relevent = [];
-      var findText = $("#search").val(); //gets text from input
+    //if something has been search, find the relevent links and only show those
+    var relevent = [];
+    var findText = $("#search").val(); //gets text from input
 
+    if(current.length > 0){
+      //only display links that are in the "current" array (have the currently selected catagory)
+      if(btnId === "students"){
+        $.each(current, function(i, link){
+          if((link.audience === "students" || link.audience === "both") && current[i].text.toLowerCase().indexOf(findText) >= 0){
+            //only push links for students or both
+            relevent.push(link);
+          }
+        });
+      }else if(btnId === "employees"){
+        $.each(current, function(i, link){
+          if((link.audience === "adults" || link.audience === "both") && current[i].text.toLowerCase().indexOf(findText) >= 0){
+            //only push links for students or both
+            relevent.push(link);
+          }
+        });
+      }else{
+        //push all
+        $.each(current, function(i, link){
+          if(current[i].text.toLowerCase().indexOf(findText) >= 0){
+            relevent.push(link);
+          }
+        });
+      }
+    }else{
+      //code below
+    
       if(btnId === "students"){
         $.each(links, function(i, link){
           if((link.audience === "students" || link.audience === "both") && links[i].text.toLowerCase().indexOf(findText) >= 0){
@@ -522,6 +549,7 @@ $(document).ready(function() {
           }
         });
       }
+    }
       //after all relevent links  are found, add them to the results div
       $.each(relevent, function(i, link) {
         $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
