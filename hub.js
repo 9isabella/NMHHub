@@ -435,10 +435,13 @@ $(document).ready(function() {
   }
 }
 
-    //after all the matching elements are found, add them to the results div
-    $.each(results, function(i, link) {
-      $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
-    });
+if(results.length < 20){
+
+  //after all the matching elements are found, add them to the results div
+  $.each(results, function(i, link) {
+    $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
+  });
+}
   });
 
 
@@ -461,8 +464,8 @@ $(document).ready(function() {
     $("#search").val("");
 
     //style selected catagory button
-    $(".btn-secondary").css('background-color','#111');
-    $(this).css('background-color','#519dd0');
+    $(".btn-secondary").css('background-color','#519dd0');
+    $(this).css('background-color','#111');
 
     var currentId = this.id;
     var matching = [];
@@ -490,16 +493,19 @@ $(document).ready(function() {
           matching.push(link);
       });
     }
-    //after all the matching elements are found, add them to the results div
-    $.each(matching, function(i, link) {
-      $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
-    });
+    if(matching.length < 20){
+
+      //after all the matching elements are found, add them to the results div
+      $.each(matching, function(i, link) {
+        $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
+      });
+    }
   });
 
   //student, all, employee buttons
   $(".btn-custom").on("click", function(){
     //change styling of correct button
-    $(".btn-custom").css('background-color','#111');
+    $(".btn-custom").css('background-color','#005b94');
     $(this).css('background-color','#519dd0');
     btnId = this.id;
     $("#results").children().remove(); //reset the element
@@ -575,9 +581,12 @@ $(document).ready(function() {
       }
     }
       //after all relevent links  are found, add them to the results div
-      $.each(relevent, function(i, link) {
-        $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
-      });
+      if(relevent.length < 20){
+
+        $.each(relevent, function(i, link) {
+          $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
+        });
+      }
 
 
 

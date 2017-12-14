@@ -2,7 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 *{
-background-color: #d7d7dd;
+  background-color: #111;
+  /*dark blue: #005b94
+  light blue: #519dd0*/
   font-family: 'Roboto', sans-serif;
 }
 
@@ -20,7 +22,7 @@ background-color: #d7d7dd;
   top: 0;
   /* Stay at the top */
   left: 0;
-  background-color: #111;
+  background-color: #519dd0;
   /* Black */
   overflow-x: hidden;
   /* Disable horizontal scroll */
@@ -44,7 +46,7 @@ background-color: #d7d7dd;
 .btn-group-vertical button {
   height: 80px;
   font-size: 130%;
-  background-color: #111;
+  background-color: #519dd0;
   border: none;
   border-radius: 0;
 }
@@ -58,6 +60,7 @@ header {
   text-align: center;
   padding-top: 20px;
   font-family: 'Roboto Slab', serif;
+  color: white;
 }
 
 #search {
@@ -77,7 +80,7 @@ header {
 }
 
 .btn-custom{
-  background-color: #111;
+  background-color: #005b94;
   color: white;
 }
 
@@ -113,11 +116,15 @@ header {
 }
 
 li{
-  background-color: #BAB9B9;
+  background-color: #005b94;
   margin-bottom: 20px;
   padding: 10px;
   list-style-type: none;
   width: 300px;
+}
+
+li a{
+  color: white !important;
 }
 
 
@@ -131,4 +138,10 @@ li{
 
 #results li {
     display: inline-block;
+    text-align: center;
+}
+
+#results li:hover{
+  margin-left: 20px;
+  background-color: #8E2F44;
 }
