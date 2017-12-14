@@ -111,3 +111,24 @@ header {
 .pos-f-t .btn-group-vertical{
   border: none;
 }
+
+li{
+  background-color: #BAB9B9;
+  margin-bottom: 20px;
+  padding: 10px;
+  list-style-type: none;
+  width: 300px;
+}
+
+
+/*styling adapted from: http://jsfiddle.net/glee/Fa722/*/
+#results {
+    margin-top: 40px;
+    -webkit-column-count: 3;
+       -moz-column-count: 3;
+            column-count: 3; /*3 is just placeholder -- can be anything*/
+}
+
+#results li {
+    display: inline-block;
+}

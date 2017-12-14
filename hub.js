@@ -557,6 +557,7 @@ $(document).ready(function() {
             relevent.push(link);
           }
         });
+
       }else if(btnId === "employees"){
         $.each(links, function(i, link){
           if((link.audience === "adults" || link.audience === "both") && links[i].text.toLowerCase().indexOf(findText) >= 0){
@@ -577,6 +578,7 @@ $(document).ready(function() {
       $.each(relevent, function(i, link) {
         $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
       });
+
 
 
   });
