@@ -365,7 +365,7 @@ $(document).ready(function() {
   var employees = [];
   var stu = false;
   var emp = false;
-  var all = false;
+  var all = true;
 
   //populate both students and employees arrays with correct links
   $.each(links, function(i, link){
