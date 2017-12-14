@@ -80,3 +80,25 @@ header {
   background-color: #111;
   color: white;
 }
+
+
+
+.pos-f-t{
+  display: none;
+}
+.sidenav {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .pos-f-t{
+    display: block;
+  }
+  .sidenav {
+    display: none;
+  }
+  #main{
+    width: 100%;
+    margin-left: 0;
+  }
+}
