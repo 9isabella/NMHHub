@@ -389,6 +389,26 @@ $(document).ready(function() {
     $("#results").children().remove(); //reset the element
     var findText = $(this).val(); //gets text from input
 
+    var currentMatch = [];
+
+    if(current.length > 0){
+      //only search through current catagory links
+      $.each(current, function(i, link){
+        if (current[i].text.toLowerCase().indexOf(findText) >= 0) {
+          currentMatch.push(link);
+        }
+      });
+
+      $.each(currentMatch, function(i, link){
+        if(stu && (link.audience === "students" || link.audience === "both")){
+          results.push(link);
+        }else if(emp && (link.audience === "adults" || link.audience === "both")){
+          results.push(link);
+        }else if(all){
+          results.push(link);
+        }
+      });
+    }else{
     //only searches through relevent links (aka students or employees)
     if(stu){
       $.each(students, function(i, link){
@@ -413,6 +433,7 @@ $(document).ready(function() {
       }
     });
   }
+}
 
     //after all the matching elements are found, add them to the results div
     $.each(results, function(i, link) {
@@ -436,6 +457,8 @@ $(document).ready(function() {
 
   //makes catagory buttons clickable
   $(".btn-secondary").on("click", function(){
+    //clear search Bar
+    $("#search").val("");
 
     //style selected catagory button
     $(".btn-secondary").css('background-color','#111');
@@ -526,7 +549,7 @@ $(document).ready(function() {
       }
     }else{
       //code below
-    
+
       if(btnId === "students"){
         $.each(links, function(i, link){
           if((link.audience === "students" || link.audience === "both") && links[i].text.toLowerCase().indexOf(findText) >= 0){
