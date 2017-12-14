@@ -363,6 +363,9 @@ $(document).ready(function() {
   var current = [];
   var students = [];
   var employees = [];
+  var stu = false;
+  var emp = false;
+  var all = false;
 
   //populate both students and employees arrays with correct links
   $.each(links, function(i, link){
@@ -374,12 +377,33 @@ $(document).ready(function() {
     }
   });
 
+  //push all
+  $.each(links, function(i, link){
+      results.push(link);
+  });
+
   //when typing a search, wait for keyup
   //when the keyup event is fired it deletes the previous results, and starts looking for new results with each keypress
   $("#search").keyup(function() {
     results = []; //reset the array
     $("#results").children().remove(); //reset the element
     var findText = $(this).val(); //gets text from input
+
+    if(stu){
+      $.each(students, function(i, link){
+        //if the current link's text includes the find text, add it to the array
+        if (students[i].text.toLowerCase().indexOf(findText) >= 0) {
+          results.push(link);
+        }
+      });
+    }else if(emp){
+      $.each(employees, function(i, link) {
+        //if the current link's text includes the find text, add it to the array
+        if (employees[i].text.toLowerCase().indexOf(findText) >= 0) {
+          results.push(link);
+        }
+      });
+    }else if(all){
     //loops through each element in links array
     $.each(links, function(i, link) {
       //if the current link's text includes the find text, add it to the array
@@ -387,12 +411,14 @@ $(document).ready(function() {
         results.push(link);
       }
     });
+  }
 
     //after all the matching elements are found, add them to the results div
     $.each(results, function(i, link) {
       $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
     });
   });
+
 
   //creates array of all the catagories
   $.each(links, function(i, link){
@@ -430,50 +456,52 @@ $(document).ready(function() {
     $(this).css('background-color','#206BCC');
     btnId = this.id;
 
-    //if nothing has been searched, populate with all things in the correct audience
-    if(results.length < 1){
-      if(btnId === "students"){
-        $.each(students, function(i, link){
-          results.push(link);
-        });
-      }else if(btnId === "employees"){
-        $.each(employees, function(i, link){
-          results.push(link);
-        });
-      }
-      //after all the matching elements are found, add them to the results div
-      $.each(results, function(i, link) {
-        $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
-      });
+    //set each variable to appropraite boolean value
+    if(btnId === "students"){
+      stu = true;
+      emp = false;
+      all = false;
+    }else if(btnId === "employees"){
+      emp = true;
+      stu = false;
+      all = false;
+    }else if(btnId === "allBtn"){
+      all = true;
+      stu = false;
+      emp = false;
+    }
 
-    }else{
       //if something has been search, find the relevent links and only show those
       var relevent = [];
+      var findText = $("#search").val(); //gets text from input
+
       if(btnId === "students"){
-        $.each(results, function(i, link){
-          if(link.audience === "students" || link.audience === "both"){
+        $.each(links, function(i, link){
+          if((link.audience === "students" || link.audience === "both") && links[i].text.toLowerCase().indexOf(findText) >= 0){
             //only push links for students or both
             relevent.push(link);
           }
         });
       }else if(btnId === "employees"){
-        $.each(results, function(i, link){
-          if(link.audience === "adults" || link.audience === "both"){
+        $.each(links, function(i, link){
+          if((link.audience === "adults" || link.audience === "both") && links[i].text.toLowerCase().indexOf(findText) >= 0){
             //only push links for students or both
             relevent.push(link);
           }
         });
       }else{
         //push all
-        $.each(results, function(i, link){
+        $.each(links, function(i, link){
+          if(links[i].text.toLowerCase().indexOf(findText) >= 0){
             relevent.push(link);
+          }
         });
       }
       //after all relevent links  are found, add them to the results div
       $.each(relevent, function(i, link) {
         $("#results").append("<li><a href='" + link.href + "'>" + link.text + "</a></li>");
       });
-    }
+
 
   });
 
